@@ -11,6 +11,15 @@ var db = mongoose.connection;
 var factory = new Factory(Schema,mongoose);
 factory.createSchemas();
 factory.insertPeople();
+// app.engine('html')
+// app.set('view engine', 'html');
+
+app.use(express.static(__dirname + '/views'));
+
+app.get('/', function(req,res){
+	// res.render('index.html', { title : 'Home' });
+	res.sendfile(__dirname + '/views/index.html')
+});
 
 app.get('/ping', function(req, res) {
     res.send({ping:'hello this is server and I am alive!'});
